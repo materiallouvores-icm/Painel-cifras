@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Imagens</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="Pesquisar imagem..."
+    >
+  </header>
+
+  <main id="gallery"></main>
+
+  <!-- Modal Fullscreen -->
+  <div id="viewer" class="hidden">
+    <button id="closeBtn">✕</button>
+    <img id="fullscreenImage">
+  </div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
