@@ -3,26 +3,42 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel de Imagens</title>
+
+  <title>Painel Mobile</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <header>
-    <input
-      type="text"
-      id="searchInput"
-      placeholder="Pesquisar imagem..."
-    >
+  <header class="topbar">
+
+    <div class="search-area">
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Pesquisar imagem..."
+      >
+
+      <button id="searchBtn">
+        Buscar
+      </button>
+
+    </div>
+
   </header>
 
   <main id="gallery"></main>
 
-  <!-- Modal Fullscreen -->
+  <!-- FULLSCREEN -->
   <div id="viewer" class="hidden">
-    <button id="closeBtn">✕</button>
+
+    <button id="closeBtn">
+      ✕
+    </button>
+
     <img id="fullscreenImage">
+
   </div>
 
   <script src="script.js"></script>
