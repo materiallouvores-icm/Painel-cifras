@@ -10,6 +10,8 @@
 </head>
 <body>
 
+  <!-- TOPO -->
+
   <header class="topbar">
 
     <div class="search-area">
@@ -17,7 +19,7 @@
       <input
         type="text"
         id="searchInput"
-        placeholder="Pesquisar imagem..."
+        placeholder="Pesquisar louvor..."
       >
 
       <button id="searchBtn">
@@ -28,13 +30,32 @@
 
   </header>
 
-  <main id="gallery"></main>
+  <!-- RESULTADOS -->
 
-  <!-- FULLSCREEN -->
+  <section class="results-section">
+
+    <h2>Resultados</h2>
+
+    <div id="results"></div>
+
+  </section>
+
+  <!-- LISTA -->
+
+  <section class="playlist-section">
+
+    <h2>Lista de Louvores</h2>
+
+    <div id="playlist"></div>
+
+  </section>
+
+  <!-- VISUALIZADOR -->
+
   <div id="viewer" class="hidden">
 
-    <button id="closeBtn">
-      ✕
+    <button id="backBtn">
+      ← Voltar
     </button>
 
     <img id="fullscreenImage">
