@@ -1,78 +1,48 @@
-const gallery = document.getElementById("gallery");
-
 const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 
+const results = document.getElementById("results");
+const playlist = document.getElementById("playlist");
+
 const viewer = document.getElementById("viewer");
 const fullscreenImage = document.getElementById("fullscreenImage");
-const closeBtn = document.getElementById("closeBtn");
+const backBtn = document.getElementById("backBtn");
 
 let images = [];
+
+let selectedSongs = [];
 
 /* CARREGA JSON */
 
 fetch("images.json")
   .then(response => response.json())
   .then(data => {
+
     images = data;
+
   });
 
-/* RENDERIZA */
+/* BUSCA */
 
-function renderImages(list){
+searchBtn.addEventListener("click", searchSongs);
 
-  gallery.innerHTML = "";
+searchInput.addEventListener("keypress", (e) => {
 
-  if(list.length === 0){
-
-    gallery.innerHTML = `
-      <p style="
-        text-align:center;
-        color:#999;
-        padding:40px 20px;
-      ">
-        Nenhuma imagem encontrada
-      </p>
-    `;
-
-    return;
+  if(e.key === "Enter"){
+    searchSongs();
   }
 
-  list.forEach(item => {
+});
 
-    const card = document.createElement("div");
-
-    card.className = "card";
-
-    card.innerHTML = `
-      <img src="${item.url}" alt="${item.name}">
-      <p>${item.name}</p>
-    `;
-
-    /* ABRIR FULLSCREEN */
-
-    card.addEventListener("click", () => {
-      openFullscreen(item.url);
-    });
-
-    gallery.appendChild(card);
-
-  });
-
-}
-
-/* BOTÃO BUSCAR */
-
-searchBtn.addEventListener("click", () => {
+function searchSongs(){
 
   const value = searchInput.value
     .toLowerCase()
     .trim();
 
-  /* SE CAMPO VAZIO NÃO MOSTRA NADA */
+  results.innerHTML = "";
 
   if(value === ""){
-    gallery.innerHTML = "";
     return;
   }
 
@@ -80,19 +50,161 @@ searchBtn.addEventListener("click", () => {
     item.name.toLowerCase().includes(value)
   );
 
-  renderImages(filtered);
+  if(filtered.length === 0){
 
-});
+    results.innerHTML = `
+      <div class="result-item">
+        <div class="result-name">
+          Nenhum resultado encontrado
+        </div>
+      </div>
+    `;
 
-/* ENTER NO TECLADO */
-
-searchInput.addEventListener("keypress", (e) => {
-
-  if(e.key === "Enter"){
-    searchBtn.click();
+    return;
   }
 
-});
+  filtered.forEach(item => {
+
+    const div = document.createElement("div");
+
+    div.className = "result-item";
+
+    div.innerHTML = `
+      <div class="result-name">
+        ${item.name}
+      </div>
+
+      <div class="action-buttons">
+
+        <button class="open-btn">
+          Abrir
+        </button>
+
+        <button class="add-btn">
+          +
+        </button>
+
+      </div>
+    `;
+
+    /* ABRIR */
+
+    div.querySelector(".open-btn")
+      .addEventListener("click", () => {
+
+        openFullscreen(item.url);
+
+      });
+
+    /* ADICIONAR */
+
+    div.querySelector(".add-btn")
+      .addEventListener("click", () => {
+
+        addToPlaylist(item);
+
+      });
+
+    results.appendChild(div);
+
+  });
+
+}
+
+/* PLAYLIST */
+
+function addToPlaylist(item){
+
+  const exists = selectedSongs.find(song =>
+    song.name === item.name
+  );
+
+  if(exists){
+    return;
+  }
+
+  selectedSongs.push(item);
+
+  renderPlaylist();
+
+}
+
+function renderPlaylist(){
+
+  playlist.innerHTML = "";
+
+  if(selectedSongs.length === 0){
+
+    playlist.innerHTML = `
+      <div class="playlist-item">
+        <div class="playlist-name">
+          Nenhum louvor selecionado
+        </div>
+      </div>
+    `;
+
+    return;
+  }
+
+  selectedSongs.forEach((item, index) => {
+
+    const div = document.createElement("div");
+
+    div.className = "playlist-item";
+
+    div.innerHTML = `
+      <div class="playlist-name">
+        ${index + 1}. ${item.name}
+      </div>
+
+      <div class="action-buttons">
+
+        <button class="open-btn">
+          Abrir
+        </button>
+
+        <button class="remove-btn">
+          X
+        </button>
+
+      </div>
+    `;
+
+    /* ABRIR */
+
+    div.querySelector(".open-btn")
+      .addEventListener("click", () => {
+
+        openFullscreen(item.url);
+
+      });
+
+    /* REMOVER */
+
+    div.querySelector(".remove-btn")
+      .addEventListener("click", () => {
+
+        removeFromPlaylist(item.name);
+
+      });
+
+    playlist.appendChild(div);
+
+  });
+
+}
+
+/* REMOVER */
+
+function removeFromPlaylist(name){
+
+  selectedSongs = selectedSongs.filter(item =>
+    item.name !== name
+  );
+
+  renderPlaylist();
+
+}
 
 /* FULLSCREEN */
 
@@ -104,22 +216,14 @@ function openFullscreen(url){
 
 }
 
-/* FECHAR */
+/* VOLTAR */
 
-closeBtn.addEventListener("click", () => {
+backBtn.addEventListener("click", () => {
 
   viewer.classList.add("hidden");
 
 });
 
-/* FECHAR CLICANDO FORA */
+/* INICIAR */
 
-viewer.addEventListener("click", (e) => {
-
-  if(e.target === viewer){
-
-    viewer.classList.add("hidden");
-
-  }
-
-});
+renderPlaylist();
