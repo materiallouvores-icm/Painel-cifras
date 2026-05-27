@@ -2,6 +2,7 @@ const searchInput = document.getElementById("searchInput");
 const searchBtn = document.getElementById("searchBtn");
 
 const results = document.getElementById("results");
+
 const playlist = document.getElementById("playlist");
 
 const viewer = document.getElementById("viewer");
@@ -73,37 +74,15 @@ function searchSongs(){
       <div class="result-name">
         ${item.name}
       </div>
-
-      <div class="action-buttons">
-
-        <button class="open-btn">
-          Abrir
-        </button>
-
-        <button class="add-btn">
-          +
-        </button>
-
-      </div>
     `;
 
-    /* ABRIR */
+    /* CLICAR NO NOME = ADICIONAR */
 
-    div.querySelector(".open-btn")
-      .addEventListener("click", () => {
+    div.addEventListener("click", () => {
 
-        openFullscreen(item.url);
+      addToPlaylist(item);
 
-      });
-
-    /* ADICIONAR */
-
-    div.querySelector(".add-btn")
-      .addEventListener("click", () => {
-
-        addToPlaylist(item);
-
-      });
+    });
 
     results.appendChild(div);
 
@@ -111,7 +90,7 @@ function searchSongs(){
 
 }
 
-/* PLAYLIST */
+/* ADICIONAR À LISTA */
 
 function addToPlaylist(item){
 
@@ -128,6 +107,8 @@ function addToPlaylist(item){
   renderPlaylist();
 
 }
+
+/* RENDERIZA LISTA */
 
 function renderPlaylist(){
 
@@ -157,22 +138,14 @@ function renderPlaylist(){
         ${index + 1}. ${item.name}
       </div>
 
-      <div class="action-buttons">
-
-        <button class="open-btn">
-          Abrir
-        </button>
-
-        <button class="remove-btn">
-          X
-        </button>
-
-      </div>
+      <button class="remove-btn">
+        X
+      </button>
     `;
 
-    /* ABRIR */
+    /* CLICAR NO NOME = ABRIR */
 
-    div.querySelector(".open-btn")
+    div.querySelector(".playlist-name")
       .addEventListener("click", () => {
 
         openFullscreen(item.url);
