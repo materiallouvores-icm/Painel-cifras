@@ -21,6 +21,8 @@ body{
   border-bottom:1px solid #222;
 }
 
+/* BUSCA */
+
 .search-area{
   display:flex;
   gap:10px;
@@ -39,36 +41,62 @@ body{
 }
 
 #searchInput::placeholder{
-  color:#999;
+  color:#888;
 }
 
 #searchBtn{
   border:none;
-  padding:0 18px;
   border-radius:12px;
+  padding:0 18px;
   background:#2d7dff;
   color:#fff;
   font-size:15px;
   cursor:pointer;
 }
 
-/* SEÇÕES */
+/* RESULTADOS */
 
-.results-section,
+#results{
+  margin-top:12px;
+}
+
+.result-item{
+  background:#1a1a1a;
+  border:1px solid #222;
+  border-radius:12px;
+
+  padding:14px;
+
+  margin-bottom:8px;
+
+  cursor:pointer;
+
+  transition:.2s;
+}
+
+.result-item:active{
+  transform:scale(.98);
+}
+
+.result-name{
+  font-size:15px;
+  line-height:1.4;
+}
+
+/* LISTA */
+
 .playlist-section{
   padding:14px;
 }
 
-.results-section h2,
 .playlist-section h2{
-  font-size:16px;
-  margin-bottom:12px;
-  color:#ccc;
+  font-size:18px;
+  margin-bottom:14px;
+  color:#ddd;
 }
 
-/* ITENS */
+/* ITEM DA LISTA */
 
-.result-item,
 .playlist-item{
   background:#1a1a1a;
   border:1px solid #222;
@@ -85,49 +113,39 @@ body{
   gap:10px;
 }
 
-.result-name,
 .playlist-name{
   flex:1;
   font-size:15px;
-  line-height:1.4;
+  line-height:1.5;
+
+  cursor:pointer;
 }
 
-/* BOTÕES */
+/* BOTÃO REMOVER */
 
-.action-buttons{
-  display:flex;
-  gap:8px;
-}
-
-.add-btn,
-.open-btn,
 .remove-btn{
   border:none;
   border-radius:10px;
-  padding:8px 12px;
-  cursor:pointer;
-  color:#fff;
-  font-size:13px;
-}
 
-.add-btn{
-  background:#1f8f4d;
-}
+  width:36px;
+  height:36px;
 
-.open-btn{
-  background:#2d7dff;
-}
-
-.remove-btn{
   background:#d13b3b;
+  color:#fff;
+
+  cursor:pointer;
+
+  font-size:15px;
 }
 
-/* VISUALIZADOR */
+/* FULLSCREEN */
 
 #viewer{
   position:fixed;
   inset:0;
+
   background:#000;
+
   z-index:9999;
 
   display:flex;
@@ -147,10 +165,11 @@ body{
   display:none !important;
 }
 
-/* BOTÃO VOLTAR */
+/* VOLTAR */
 
 #backBtn{
   position:absolute;
+
   top:15px;
   left:15px;
 
