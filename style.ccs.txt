@@ -6,52 +6,77 @@
 }
 
 body{
+  min-height:100vh;
+
+  background:#020817;
+
+  overflow-x:hidden;
+
+  color:#fff;
+}
+
+/* FUNDO */
+
+.background{
+  position:fixed;
+
+  inset:0;
+
   background:
     linear-gradient(
       90deg,
-      #020617 0%,
-      #031633 35%,
-      #020617 100%
+      #020817 0%,
+      #041733 45%,
+      #020817 100%
     );
 
-  color:#fff;
-
-  min-height:100vh;
-
-  padding:24px 16px;
+  z-index:-1;
 }
 
-/* TÍTULO */
+/* CONTAINER */
+
+.container{
+  width:100%;
+
+  max-width:1200px;
+
+  margin:auto;
+
+  padding:28px 18px 40px;
+}
+
+/* LOGO */
 
 .logo{
-  font-size:22px;
-  font-weight:bold;
-  color:#ff3131;
+  color:#ff3030;
 
-  margin-bottom:28px;
+  font-size:28px;
+  font-weight:bold;
+
+  margin-bottom:30px;
 }
 
-/* TOPO */
+/* BOX DE BUSCA */
 
-.topbar{
+.search-box{
   background:rgba(255,255,255,.03);
 
   border:1px solid rgba(255,255,255,.08);
 
-  border-radius:24px;
+  border-radius:26px;
 
-  padding:18px;
+  padding:28px 24px;
 
-  backdrop-filter:blur(6px);
+  margin-bottom:34px;
 
-  margin-bottom:28px;
+  backdrop-filter:blur(10px);
 }
 
-/* BUSCA */
+/* ÁREA DE BUSCA */
 
 .search-area{
   display:flex;
-  gap:12px;
+  gap:14px;
 }
 
 /* INPUT */
@@ -59,31 +84,33 @@ body{
 #searchInput{
   flex:1;
 
-  height:58px;
+  height:66px;
 
-  border-radius:18px;
-
-  border:1px solid rgba(255,255,255,.12);
-
-  background:rgba(255,255,255,.02);
-
-  padding:0 18px;
-
-  color:#fff;
+  border:none;
 
   outline:none;
 
-  font-size:16px;
+  border-radius:18px;
+
+  padding:0 20px;
+
+  font-size:18px;
+
+  color:#fff;
+
+  background:rgba(255,255,255,.03);
+
+  border:1px solid rgba(255,255,255,.08);
 }
 
 #searchInput::placeholder{
-  color:#8f9bb3;
+  color:#94a3b8;
 }
 
 /* BOTÃO */
 
 #searchBtn{
-  min-width:130px;
+  width:150px;
 
   border:none;
 
@@ -93,7 +120,7 @@ body{
 
   color:#fff;
 
-  font-size:18px;
+  font-size:22px;
   font-weight:bold;
 
   cursor:pointer;
@@ -108,7 +135,7 @@ body{
 /* RESULTADOS */
 
 #results{
-  margin-top:16px;
+  margin-top:18px;
 }
 
 .result-item{
@@ -118,7 +145,7 @@ body{
 
   border-radius:18px;
 
-  padding:16px;
+  padding:18px;
 
   margin-bottom:10px;
 
@@ -132,41 +159,51 @@ body{
 }
 
 .result-name{
-  font-size:16px;
+  font-size:18px;
+
+  font-weight:500;
+
   color:#fff;
+}
+
+/* HEADER LISTA */
+
+.playlist-header{
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  margin-bottom:20px;
+}
+
+/* TÍTULO */
+
+.playlist-title{
+  font-size:24px;
+
+  font-weight:bold;
 }
 
 /* LISTA */
 
-.playlist-section{
-  margin-top:12px;
-}
-
-.playlist-header{
+#playlist{
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  margin-bottom:18px;
+  flex-direction:column;
+  gap:14px;
 }
 
-.playlist-title{
-  font-size:20px;
-  font-weight:bold;
-}
-
-/* ITENS */
+/* ITEM */
 
 .playlist-item{
   background:rgba(255,255,255,.03);
 
   border:1px solid rgba(255,255,255,.06);
 
-  border-radius:20px;
+  border-radius:22px;
 
-  padding:22px 18px;
-
-  margin-bottom:14px;
+  padding:26px 22px;
 
   transition:.2s;
 }
@@ -175,85 +212,59 @@ body{
   transform:scale(.99);
 }
 
+/* NOME */
+
 .playlist-name{
-  font-size:18px;
+  font-size:22px;
+
   font-weight:600;
 
-  cursor:pointer;
-
   line-height:1.5;
-}
-
-/* FULLSCREEN */
-
-#viewer{
-  position:fixed;
-  inset:0;
-
-  background:#000;
-
-  z-index:9999;
-}
-
-#viewer img{
-  width:100vw;
-  height:100vh;
-
-  object-fit:cover;
-}
-
-/* ESCONDER */
-
-.hidden{
-  display:none !important;
-}
-
-/* BOTÃO VOLTAR */
-
-#backBtn{
-  position:absolute;
-
-  top:20px;
-  left:20px;
-
-  z-index:10000;
-
-  border:none;
-
-  border-radius:14px;
-
-  padding:14px 18px;
-
-  background:rgba(0,0,0,.55);
-
-  color:#fff;
-
-  font-size:16px;
 
   cursor:pointer;
-
-  backdrop-filter:blur(6px);
 }
 
 /* MOBILE */
 
 @media(max-width:700px){
 
-  body{
-    padding:18px 12px;
+  .container{
+    padding:22px 14px 30px;
+  }
+
+  .logo{
+    font-size:22px;
+  }
+
+  .search-box{
+    padding:18px;
+    border-radius:22px;
   }
 
   .search-area{
-    flex-direction:row;
+    gap:10px;
   }
 
-  #searchBtn{
-    min-width:110px;
+  #searchInput{
+    height:58px;
     font-size:16px;
   }
 
+  #searchBtn{
+    width:120px;
+    font-size:18px;
+  }
+
+  .playlist-title{
+    font-size:20px;
+  }
+
+  .playlist-item{
+    padding:22px 18px;
+  }
+
   .playlist-name{
-    font-size:17px;
+    font-size:18px;
   }
 
 }
