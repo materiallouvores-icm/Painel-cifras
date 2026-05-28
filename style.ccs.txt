@@ -121,23 +121,6 @@ body{
   cursor:pointer;
 }
 
-/* BOTÃO REMOVER */
-
-.remove-btn{
-  border:none;
-  border-radius:10px;
-
-  width:36px;
-  height:36px;
-
-  background:#d13b3b;
-  color:#fff;
-
-  cursor:pointer;
-
-  font-size:15px;
-}
-
 /* FULLSCREEN */
 
 #viewer{
