@@ -2,17 +2,19 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
 }
+
+/* BODY */
 
 body{
   min-height:100vh;
 
-  background:#020817;
+  color:#fff;
 
   overflow-x:hidden;
 
-  color:#fff;
+  background:#020817;
 }
 
 /* FUNDO */
@@ -22,15 +24,15 @@ body{
 
   inset:0;
 
+  z-index:-1;
+
   background:
     linear-gradient(
       90deg,
       #020817 0%,
-      #041733 45%,
+      #04152d 40%,
       #020817 100%
     );
-
-  z-index:-1;
 }
 
 /* CONTAINER */
@@ -38,7 +40,7 @@ body{
 .container{
   width:100%;
 
-  max-width:1200px;
+  max-width:1300px;
 
   margin:auto;
 
@@ -48,34 +50,35 @@ body{
 /* LOGO */
 
 .logo{
-  color:#ff3030;
+  color:#ff3131;
 
   font-size:28px;
   font-weight:bold;
 
-  margin-bottom:30px;
+  margin-bottom:28px;
 }
 
-/* BOX DE BUSCA */
+/* TOPO */
 
-.search-box{
+.topbar{
   background:rgba(255,255,255,.03);
 
   border:1px solid rgba(255,255,255,.08);
 
-  border-radius:26px;
+  border-radius:28px;
 
   padding:28px 24px;
 
   margin-bottom:34px;
 
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(8px);
 }
 
-/* ÁREA DE BUSCA */
+/* BUSCA */
 
 .search-area{
   display:flex;
+
   gap:14px;
 }
 
@@ -84,7 +87,7 @@ body{
 #searchInput{
   flex:1;
 
-  height:66px;
+  height:64px;
 
   border:none;
 
@@ -104,7 +107,7 @@ body{
 }
 
 #searchInput::placeholder{
-  color:#94a3b8;
+  color:#8da1bd;
 }
 
 /* BOTÃO */
@@ -161,37 +164,23 @@ body{
 .result-name{
   font-size:18px;
 
-  font-weight:500;
-
   color:#fff;
 }
 
-/* HEADER LISTA */
-
-.playlist-header{
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  margin-bottom:20px;
-}
-
-/* TÍTULO */
+/* HEADER */
 
 .playlist-title{
   font-size:24px;
 
   font-weight:bold;
+
+  margin-bottom:20px;
 }
 
 /* LISTA */
 
-#playlist{
-  display:flex;
-  flex-direction:column;
-  gap:14px;
+.playlist-section{
+  padding:0;
 }
 
 /* ITEM */
@@ -203,7 +192,9 @@ body{
 
   border-radius:22px;
 
-  padding:26px 22px;
+  padding:24px 20px;
+
+  margin-bottom:14px;
 
   transition:.2s;
 }
@@ -236,9 +227,9 @@ body{
     font-size:22px;
   }
 
-  .search-box{
+  .topbar{
     padding:18px;
-    border-radius:22px;
+    border-radius:24px;
   }
 
   .search-area{
@@ -246,7 +237,7 @@ body{
   }
 
   #searchInput{
-    height:58px;
+    height:56px;
     font-size:16px;
   }
 
@@ -260,7 +251,7 @@ body{
   }
 
   .playlist-item{
-    padding:22px 18px;
+    padding:20px 16px;
   }
 
   .playlist-name{
