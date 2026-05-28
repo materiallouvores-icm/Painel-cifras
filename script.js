@@ -133,29 +133,76 @@ function renderPlaylist(){
       <div class="playlist-name">
         ${index + 1}. ${item.name}
       </div>
-
-      <button class="remove-btn">
-        X
-      </button>
     `;
 
-    /* CLICAR NO NOME = ABRIR */
+    const nameElement =
+      div.querySelector(".playlist-name");
 
-    div.querySelector(".playlist-name")
-      .addEventListener("click", () => {
+    /* TOQUE NORMAL = ABRIR */
 
-        openFullscreen(item.url);
+    nameElement.addEventListener("click", () => {
 
-      });
+      openFullscreen(item.url);
 
-    /* REMOVER */
+    });
 
-    div.querySelector(".remove-btn")
-      .addEventListener("click", () => {
+    /* SEGURAR PRESSIONADO = PERGUNTAR SE QUER APAGAR */
 
-        removeFromPlaylist(item.name);
+    let pressTimer;
 
-      });
+    nameElement.addEventListener("touchstart", () => {
+
+      pressTimer = setTimeout(() => {
+
+        const confirmDelete = confirm(
+          `Deseja remover "${item.name}" da lista?`
+        );
+
+        if(confirmDelete){
+
+          removeFromPlaylist(item.name);
+
+        }
+
+      }, 700);
+
+    });
+
+    nameElement.addEventListener("touchend", () => {
+
+      clearTimeout(pressTimer);
+
+    });
+
+    nameElement.addEventListener("mousedown", () => {
+
+      pressTimer = setTimeout(() => {
+
+        const confirmDelete = confirm(
+          `Deseja remover "${item.name}" da lista?`
+        );
+
+        if(confirmDelete){
+
+          removeFromPlaylist(item.name);
+
+        }
+
+      }, 700);
+
+    });
+
+    nameElement.addEventListener("mouseup", () => {
+
+      clearTimeout(pressTimer);
+
+    });
+
+    nameElement.addEventListener("mouseleave", () => {
+
+      clearTimeout(pressTimer);
+
+    });
 
     playlist.appendChild(div);
 
