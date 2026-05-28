@@ -1,11 +1,20 @@
-const searchInput = document.getElementById("searchInput");
-const searchBtn = document.getElementById("searchBtn");
+const searchInput =
+  document.getElementById("searchInput");
 
-const results = document.getElementById("results");
+const searchBtn =
+  document.getElementById("searchBtn");
 
-const playlist = document.getElementById("playlist");
+const results =
+  document.getElementById("results");
+
+const playlist =
+  document.getElementById("playlist");
+
+/* IMAGENS */
 
 let images = [];
+
+/* LISTA */
 
 let selectedSongs = [];
 
@@ -21,21 +30,30 @@ fetch("images.json")
 
 /* BUSCA */
 
-searchBtn.addEventListener("click", searchSongs);
+searchBtn.addEventListener(
+  "click",
+  searchSongs
+);
 
-searchInput.addEventListener("keypress", (e) => {
+searchInput.addEventListener(
+  "keypress",
+  (e) => {
 
-  if(e.key === "Enter"){
-    searchSongs();
+    if(e.key === "Enter"){
+
+      searchSongs();
+
+    }
+
   }
-
-});
+);
 
 function searchSongs(){
 
-  const value = searchInput.value
-    .toLowerCase()
-    .trim();
+  const value =
+    searchInput.value
+      .toLowerCase()
+      .trim();
 
   results.innerHTML = "";
 
@@ -44,7 +62,11 @@ function searchSongs(){
   }
 
   const filtered = images.filter(item =>
-    item.name.toLowerCase().includes(value)
+
+    item.name
+      .toLowerCase()
+      .includes(value)
+
   );
 
   if(filtered.length === 0){
@@ -58,11 +80,13 @@ function searchSongs(){
     `;
 
     return;
+
   }
 
   filtered.forEach(item => {
 
-    const div = document.createElement("div");
+    const div =
+      document.createElement("div");
 
     div.className = "result-item";
 
@@ -72,13 +96,16 @@ function searchSongs(){
       </div>
     `;
 
-    /* CLICAR NO NOME = ADICIONAR */
+    /* ADICIONAR À LISTA */
 
-    div.addEventListener("click", () => {
+    div.addEventListener(
+      "click",
+      () => {
 
-      addToPlaylist(item);
+        addToPlaylist(item);
 
-    });
+      }
+    );
 
     results.appendChild(div);
 
@@ -86,13 +113,16 @@ function searchSongs(){
 
 }
 
-/* ADICIONAR À LISTA */
+/* ADICIONAR */
 
 function addToPlaylist(item){
 
-  const exists = selectedSongs.find(song =>
-    song.name === item.name
-  );
+  const exists =
+    selectedSongs.find(song =>
+
+      song.name === item.name
+
+    );
 
   if(exists){
     return;
@@ -104,7 +134,7 @@ function addToPlaylist(item){
 
 }
 
-/* RENDERIZA LISTA */
+/* RENDERIZA */
 
 function renderPlaylist(){
 
@@ -121,11 +151,13 @@ function renderPlaylist(){
     `;
 
     return;
+
   }
 
   selectedSongs.forEach((item, index) => {
 
-    const div = document.createElement("div");
+    const div =
+      document.createElement("div");
 
     div.className = "playlist-item";
 
@@ -138,71 +170,91 @@ function renderPlaylist(){
     const nameElement =
       div.querySelector(".playlist-name");
 
-    /* TOQUE NORMAL = ABRIR */
+    /* ABRIR IMAGEM */
 
-    nameElement.addEventListener("click", () => {
+    nameElement.addEventListener(
+      "click",
+      () => {
 
-      openFullscreen(item.url);
+        openFullscreen(item.id);
 
-    });
+      }
+    );
 
-    /* SEGURAR PRESSIONADO = PERGUNTAR SE QUER APAGAR */
+    /* SEGURAR PARA REMOVER */
 
     let pressTimer;
 
-    nameElement.addEventListener("touchstart", () => {
+    nameElement.addEventListener(
+      "touchstart",
+      () => {
 
-      pressTimer = setTimeout(() => {
+        pressTimer = setTimeout(() => {
 
-        const confirmDelete = confirm(
-          `Deseja remover "${item.name}" da lista?`
-        );
+          const confirmDelete =
+            confirm(
+              `Deseja remover "${item.name}" da lista?`
+            );
 
-        if(confirmDelete){
+          if(confirmDelete){
 
-          removeFromPlaylist(item.name);
+            removeFromPlaylist(item.name);
 
-        }
+          }
 
-      }, 700);
+        }, 700);
 
-    });
+      }
+    );
 
-    nameElement.addEventListener("touchend", () => {
+    nameElement.addEventListener(
+      "touchend",
+      () => {
 
-      clearTimeout(pressTimer);
+        clearTimeout(pressTimer);
 
-    });
+      }
+    );
 
-    nameElement.addEventListener("mousedown", () => {
+    nameElement.addEventListener(
+      "mousedown",
+      () => {
 
-      pressTimer = setTimeout(() => {
+        pressTimer = setTimeout(() => {
 
-        const confirmDelete = confirm(
-          `Deseja remover "${item.name}" da lista?`
-        );
+          const confirmDelete =
+            confirm(
+              `Deseja remover "${item.name}" da lista?`
+            );
 
-        if(confirmDelete){
+          if(confirmDelete){
 
-          removeFromPlaylist(item.name);
+            removeFromPlaylist(item.name);
 
-        }
+          }
 
-      }, 700);
+        }, 700);
 
-    });
+      }
+    );
 
-    nameElement.addEventListener("mouseup", () => {
+    nameElement.addEventListener(
+      "mouseup",
+      () => {
 
-      clearTimeout(pressTimer);
+        clearTimeout(pressTimer);
 
-    });
+      }
+    );
 
-    nameElement.addEventListener("mouseleave", () => {
+    nameElement.addEventListener(
+      "mouseleave",
+      () => {
 
-      clearTimeout(pressTimer);
+        clearTimeout(pressTimer);
 
-    });
+      }
+    );
 
     playlist.appendChild(div);
 
@@ -214,19 +266,28 @@ function renderPlaylist(){
 
 function removeFromPlaylist(name){
 
-  selectedSongs = selectedSongs.filter(item =>
-    item.name !== name
-  );
+  selectedSongs =
+    selectedSongs.filter(item =>
+
+      item.name !== name
+
+    );
 
   renderPlaylist();
 
 }
 
-/* FULLSCREEN */
+/* ABRIR IMAGEM */
 
-function openFullscreen(url){
+function openFullscreen(id){
 
-  window.open(url, "_blank");
+  const imageUrl =
+    `https://lh3.googleusercontent.com/d/${id}`;
+
+  window.open(
+    imageUrl,
+    "_blank"
+  );
 
 }
 
