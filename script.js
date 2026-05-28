@@ -183,9 +183,7 @@ function removeFromPlaylist(name){
 
 function openFullscreen(url){
 
-  fullscreenImage.src = url;
-
-  viewer.classList.remove("hidden");
+  window.open(url, "_blank");
 
 }
 
