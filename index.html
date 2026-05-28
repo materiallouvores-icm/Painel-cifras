@@ -1,58 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Painel Mobile</title>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>CIFRAS ICM</title>
 
   <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-  <div class="logo">
-  CIFRAS ICM
-</div>
+  <!-- FUNDO -->
 
-  <!-- TOPO -->
+  <div class="background"></div>
 
-  <header class="topbar">
+  <!-- CONTEÚDO -->
 
-    <div class="search-area">
+  <div class="container">
 
-      <input
-        type="text"
-        id="searchInput"
-        placeholder="Pesquisar louvor..."
-      >
+    <!-- LOGO -->
 
-      <button id="searchBtn">
-        Buscar
-      </button>
+    <div class="logo">
+      CIFRAS ICM
+    </div>
+
+    <!-- BUSCA -->
+
+    <div class="search-box">
+
+      <div class="search-area">
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Pesquisar louvor..."
+        >
+
+        <button id="searchBtn">
+          Buscar
+        </button>
+
+      </div>
+
+      <!-- RESULTADOS -->
+
+      <div id="results"></div>
 
     </div>
 
-    <!-- RESULTADOS DA BUSCA -->
-
-    <div id="results"></div>
-
-  </header>
-
-  <!-- LISTA -->
-
-  <section class="playlist-section">
+    <!-- LISTA -->
 
     <div class="playlist-header">
 
-  <div class="playlist-title">
-    LISTA DE LOUVORES
-  </div>
+      <div class="playlist-title">
+        LISTA DE LOUVORES
+      </div>
 
-</div>
+    </div>
 
     <div id="playlist"></div>
 
-  </section>
+  </div>
 
   <script src="script.js"></script>
 
