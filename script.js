@@ -5,10 +5,6 @@ const results = document.getElementById("results");
 
 const playlist = document.getElementById("playlist");
 
-const viewer = document.getElementById("viewer");
-const fullscreenImage = document.getElementById("fullscreenImage");
-const backBtn = document.getElementById("backBtn");
-
 let images = [];
 
 let selectedSongs = [];
@@ -186,14 +182,6 @@ function openFullscreen(url){
   window.open(url, "_blank");
 
 }
-
-/* VOLTAR */
-
-backBtn.addEventListener("click", () => {
-
-  viewer.classList.add("hidden");
-
-});
 
 /* INICIAR */
 
