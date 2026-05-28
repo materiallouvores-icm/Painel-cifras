@@ -72,6 +72,9 @@ body{
   margin-bottom:34px;
 
   backdrop-filter:blur(8px);
+
+  box-shadow:
+    0 0 30px rgba(0,0,0,.25);
 }
 
 /* BUSCA */
@@ -104,6 +107,12 @@ body{
   background:rgba(255,255,255,.03);
 
   border:1px solid rgba(255,255,255,.08);
+
+  transition:.2s;
+}
+
+#searchInput:focus{
+  border:1px solid rgba(255,255,255,.18);
 }
 
 #searchInput::placeholder{
@@ -129,6 +138,10 @@ body{
   cursor:pointer;
 
   transition:.2s;
+}
+
+#searchBtn:hover{
+  opacity:.95;
 }
 
 #searchBtn:active{
@@ -157,6 +170,10 @@ body{
   transition:.2s;
 }
 
+.result-item:hover{
+  background:rgba(255,255,255,.05);
+}
+
 .result-item:active{
   transform:scale(.98);
 }
@@ -167,7 +184,13 @@ body{
   color:#fff;
 }
 
-/* HEADER */
+/* LISTA */
+
+.playlist-section{
+  padding:0;
+}
+
+/* TÍTULO */
 
 .playlist-title{
   font-size:24px;
@@ -175,12 +198,6 @@ body{
   font-weight:bold;
 
   margin-bottom:20px;
-}
-
-/* LISTA */
-
-.playlist-section{
-  padding:0;
 }
 
 /* ITEM */
@@ -197,6 +214,15 @@ body{
   margin-bottom:14px;
 
   transition:.2s;
+
+  backdrop-filter:blur(8px);
+
+  box-shadow:
+    0 0 20px rgba(0,0,0,.18);
+}
+
+.playlist-item:hover{
+  background:rgba(255,255,255,.05);
 }
 
 .playlist-item:active{
